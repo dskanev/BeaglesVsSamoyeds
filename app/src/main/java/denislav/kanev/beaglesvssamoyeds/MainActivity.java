@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnRestart;
     private android.support.v7.widget.GridLayout gridLayout;
     private Toast mToast;
+    private int dogsCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
             tappedImageView.setTranslationX(-2000);
 
             playerChoices[tappedImageTag] = currentPlayer;
+            dogsCounter ++;
+            if (dogsCounter == 9) {
+                btnRestart.setVisibility(View.VISIBLE);
+            }
 
             if (currentPlayer == Player.ONE) {
 
@@ -76,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             if (mToast != null) mToast.cancel();
             mToast = Toast.makeText(this, tappedImageView.getTag().toString(), Toast.LENGTH_SHORT);
             mToast.show();
+
 
             for (int[] winnerColumns : winnerRowsColumns) {
                 if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
