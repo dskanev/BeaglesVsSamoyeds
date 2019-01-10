@@ -35,9 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Beagles Vs Samoyeds"); // set the top title
 
-        for(int i = 0; i < 9; i++){
-            playerChoices[i] = Player.NONE;
-        }
+        resetChoices();
 
         btnRestart = findViewById(R.id.btnRestart);
         gridLayout = findViewById(R.id.gridLayout);
@@ -105,11 +103,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         currentPlayer = Player.ONE;
-        for(int i = 0; i < 9; i++){
-            playerChoices[i] = Player.NONE;
-        }
+        resetChoices();
         gameOver = false;
         btnRestart.setVisibility(View.GONE);
 
+    }
+
+    private void resetChoices() {
+        for(int i = 0; i < playerChoices.length; i++){
+            playerChoices[i] = Player.NONE;
+        }
     }
 }
