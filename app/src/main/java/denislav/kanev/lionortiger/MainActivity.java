@@ -60,8 +60,13 @@ public class MainActivity extends AppCompatActivity {
         for (int[] winnerColumns : winnerRowsColumns) {
             if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
                     && playerChoices[winnerColumns[1]] == playerChoices[winnerColumns[2]]
-                    && playerChoices[winnerColumns[0]] != Player.NONE){
-                Toast.makeText(this, "We have a winner!", Toast.LENGTH_LONG).show();
+                    && playerChoices[winnerColumns[0]] != Player.NONE) {
+
+                if (currentPlayer == Player.ONE) {
+                    Toast.makeText(this, "Tigers win!", Toast.LENGTH_LONG).show();
+                } else if (currentPlayer == Player.TWO) {
+                    Toast.makeText(this, "Lions win!", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
