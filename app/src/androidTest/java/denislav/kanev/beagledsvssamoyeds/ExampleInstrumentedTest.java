@@ -1,4 +1,4 @@
-package denislav.kanev.lionortiger;
+package denislav.kanev.beagledsvssamoyeds;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

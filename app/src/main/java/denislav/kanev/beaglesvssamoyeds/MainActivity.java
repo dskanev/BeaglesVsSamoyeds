@@ -1,10 +1,12 @@
-package denislav.kanev.lionortiger;
+package denislav.kanev.beaglesvssamoyeds;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import denislav.kanev.lionortiger.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (currentPlayer == Player.ONE) {
 
-            tappedImageView.setImageResource(R.drawable.lion);
+            tappedImageView.setImageResource(R.drawable.beagle);
             currentPlayer = Player.TWO;
         } else if( currentPlayer == Player.TWO) {
 
-            tappedImageView.setImageResource(R.drawable.tiger);
+            tappedImageView.setImageResource(R.drawable.samoyed);
             currentPlayer = Player.ONE;
         }
 
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     && playerChoices[winnerColumns[0]] != Player.NONE) {
 
                 if (currentPlayer == Player.ONE) {
-                    Toast.makeText(this, "Tigers win!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Samoyeds win!", Toast.LENGTH_LONG).show();
                 } else if (currentPlayer == Player.TWO) {
-                    Toast.makeText(this, "Lions win!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Beagles win!", Toast.LENGTH_LONG).show();
                 }
             }
         }

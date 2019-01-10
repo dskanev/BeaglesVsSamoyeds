@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_dark"
-    tools:context=".MainActivity">
+    tools:context="denislav.kanev.beaglesvssamoyeds.MainActivity">
 
     <android.support.v7.widget.GridLayout
         android:id="@+id/gridLayout"
@@ -125,7 +125,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Lion or Tiger?"
+        android:text="Beagles vs Samoyeds"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
