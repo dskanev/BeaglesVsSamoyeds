@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean gameOver = false;
     private Button btnRestart;
     private android.support.v7.widget.GridLayout gridLayout;
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             tappedImageView.animate().translationXBy(2000).alpha(1).rotation(3600).setDuration(1000);
-            Toast.makeText(this, tappedImageView.getTag().toString(), Toast.LENGTH_SHORT).show();
+
+            if (mToast != null) mToast.cancel();
+            mToast = Toast.makeText(this, tappedImageView.getTag().toString(), Toast.LENGTH_SHORT);
+            mToast.show();
 
             for (int[] winnerColumns : winnerRowsColumns) {
                 if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
@@ -87,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
                     } else if (currentPlayer == Player.TWO) {
                         winner = "Beagles";
                     }
-                    Toast.makeText(this, winner + " win!", Toast.LENGTH_LONG).show();
+                    if (mToast != null) mToast.cancel();
+                    mToast = Toast.makeText(this, winner + " win!", Toast.LENGTH_LONG);
+                    mToast.show();
                 }
             }
         }
