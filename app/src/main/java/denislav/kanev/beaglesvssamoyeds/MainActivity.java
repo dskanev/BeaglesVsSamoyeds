@@ -44,33 +44,38 @@ public class MainActivity extends AppCompatActivity {
     public void imageViewIsTapped(View imageView){
 
         ImageView tappedImageView = (ImageView)imageView;
-        tappedImageView.setTranslationX(-2000);
 
         int tappedImageTag = Integer.parseInt(tappedImageView.getTag().toString());
-        playerChoices[tappedImageTag] = currentPlayer;
+        if (playerChoices[tappedImageTag] == Player.NONE) {
 
-        if (currentPlayer == Player.ONE) {
+            tappedImageView.setTranslationX(-2000);
 
-            tappedImageView.setImageResource(R.drawable.beagle);
-            currentPlayer = Player.TWO;
-        } else if( currentPlayer == Player.TWO) {
+            playerChoices[tappedImageTag] = currentPlayer;
 
-            tappedImageView.setImageResource(R.drawable.samoyed);
-            currentPlayer = Player.ONE;
-        }
+            if (currentPlayer == Player.ONE) {
 
-        tappedImageView.animate().translationXBy(2000).alpha(1).rotation(3600).setDuration(1000);
-        Toast.makeText(this, tappedImageView.getTag().toString(),Toast.LENGTH_SHORT).show();
+                tappedImageView.setImageResource(R.drawable.beagle);
+                currentPlayer = Player.TWO;
+            } else if (currentPlayer == Player.TWO) {
 
-        for (int[] winnerColumns : winnerRowsColumns) {
-            if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
-                    && playerChoices[winnerColumns[1]] == playerChoices[winnerColumns[2]]
-                    && playerChoices[winnerColumns[0]] != Player.NONE) {
+                tappedImageView.setImageResource(R.drawable.samoyed);
+                currentPlayer = Player.ONE;
+            }
 
-                if (currentPlayer == Player.ONE) {
-                    Toast.makeText(this, "Samoyeds win!", Toast.LENGTH_LONG).show();
-                } else if (currentPlayer == Player.TWO) {
-                    Toast.makeText(this, "Beagles win!", Toast.LENGTH_LONG).show();
+            tappedImageView.animate().translationXBy(2000).alpha(1).rotation(3600).setDuration(1000);
+            Toast.makeText(this, tappedImageView.getTag().toString(), Toast.LENGTH_SHORT).show();
+
+            for (int[] winnerColumns : winnerRowsColumns) {
+                if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
+                        && playerChoices[winnerColumns[1]] == playerChoices[winnerColumns[2]]
+                        && playerChoices[winnerColumns[0]] != Player.NONE) {
+                    String winner = "";
+                    if (currentPlayer == Player.ONE) {
+                        winner = "Samoyeds";
+                    } else if (currentPlayer == Player.TWO) {
+                        winner = "Beagles";
+                    }
+                    Toast.makeText(this, winner + " win!", Toast.LENGTH_LONG).show();
                 }
             }
         }
