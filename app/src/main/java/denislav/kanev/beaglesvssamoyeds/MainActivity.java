@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
             {0,3,6},{1,4,7},{2,5,8},
             {0,4,8}, {2,4,6}};
 
+    private boolean gameOver = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView tappedImageView = (ImageView)imageView;
 
         int tappedImageTag = Integer.parseInt(tappedImageView.getTag().toString());
-        if (playerChoices[tappedImageTag] == Player.NONE) {
+        if (playerChoices[tappedImageTag] == Player.NONE && gameOver == false) {
 
             tappedImageView.setTranslationX(-2000);
 
@@ -69,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 if (playerChoices[winnerColumns[0]] == playerChoices[winnerColumns[1]]
                         && playerChoices[winnerColumns[1]] == playerChoices[winnerColumns[2]]
                         && playerChoices[winnerColumns[0]] != Player.NONE) {
+
+                    gameOver = true;
                     String winner = "";
+
                     if (currentPlayer == Player.ONE) {
                         winner = "Samoyeds";
                     } else if (currentPlayer == Player.TWO) {
