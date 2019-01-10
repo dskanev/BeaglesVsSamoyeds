@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
             {0,4,8}, {2,4,6}};
 
     private boolean gameOver = false;
+    private Button btnRestart;
+    private android.support.v7.widget.GridLayout gridLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +35,19 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Beagles Vs Samoyeds"); // set the top title
 
-        playerChoices[0] = Player.NONE;
-        playerChoices[1] = Player.NONE;
-        playerChoices[2] = Player.NONE;
-        playerChoices[3] = Player.NONE;
-        playerChoices[4] = Player.NONE;
-        playerChoices[5] = Player.NONE;
-        playerChoices[6] = Player.NONE;
-        playerChoices[7] = Player.NONE;
-        playerChoices[8] = Player.NONE;
+        for(int i = 0; i < 9; i++){
+            playerChoices[i] = Player.NONE;
+        }
+
+        btnRestart = findViewById(R.id.btnRestart);
+        gridLayout = findViewById(R.id.gridLayout);
+
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartGame();
+            }
+        });
 
     }
 
@@ -72,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         && playerChoices[winnerColumns[1]] == playerChoices[winnerColumns[2]]
                         && playerChoices[winnerColumns[0]] != Player.NONE) {
 
+                    btnRestart.setVisibility(View.VISIBLE);
                     gameOver = true;
                     String winner = "";
 
@@ -84,5 +93,23 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    // Restart game functionality
+    private void restartGame() {
+        for (int i = 0; i < gridLayout.getChildCount(); i++){
+            ImageView imageView = (ImageView)gridLayout.getChildAt(i);
+            imageView.setImageDrawable(null);
+            imageView.setAlpha(0.2f);
+
+        }
+
+        currentPlayer = Player.ONE;
+        for(int i = 0; i < 9; i++){
+            playerChoices[i] = Player.NONE;
+        }
+        gameOver = false;
+        btnRestart.setVisibility(View.GONE);
+
     }
 }
